@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:uuid/uuid.dart';
@@ -18,7 +17,7 @@ class TodoModel {
         date = cDate ?? DateTime.now();
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    return {
       'id': id,
       'title': title,
       'description': description,
@@ -28,14 +27,14 @@ class TodoModel {
 
   factory TodoModel.fromMap(Map<String, dynamic> map) {
     return TodoModel(
-      cId: map['id'] as String,
-      title: map['title'] as String,
-      description: map['description'] as String,
-      cDate: DateTime.fromMillisecondsSinceEpoch(map['date'] as int),
+      cId: map['id'] ?? '',
+      title: map['title'] ?? '',
+      description: map['description'] ?? '',
+      cDate: DateTime.fromMillisecondsSinceEpoch(map['date']),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory TodoModel.fromJson(String source) => TodoModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory TodoModel.fromJson(String source) => TodoModel.fromMap(json.decode(source));
 }
