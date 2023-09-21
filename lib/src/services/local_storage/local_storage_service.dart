@@ -3,6 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:app_todo_list/src/core/exception/local_storage_exception.dart';
 
 class LocalStorageService {
+  
   Future<void> set(String key, String? data) async {
     const storage = FlutterSecureStorage();
 
