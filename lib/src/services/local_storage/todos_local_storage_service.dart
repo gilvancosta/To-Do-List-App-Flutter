@@ -4,6 +4,7 @@ import 'dart:developer';
 
 import 'package:app_todo_list/src/core/exception/local_storage_exception.dart';
 
+import '../../core/consts/messages_consts.dart';
 import '../../models/todo_model.dart';
 import 'local_storage_service.dart';
 
@@ -23,7 +24,7 @@ class TodosLocalStorageService {
       return error.message;
     } catch (error, st) {
       log('Error saving todos', error: error, stackTrace: st);
-      return "Algo deu errado. Por favor, tente novamente mais tarde";
+      return defaultErrorMessage;
     }
   }
 
@@ -42,7 +43,7 @@ class TodosLocalStorageService {
       return (error.message, null);
     } catch (error, st) {
       log('Error loading todos', error: error, stackTrace: st);
-      return ("Algo deu errado. Por favor, tente novamente mais tarde", null);
+      return (defaultErrorMessage, null);
     }
   }
 
@@ -57,7 +58,7 @@ class TodosLocalStorageService {
       return error.message;
     } catch (error, st) {
       log('Error saving done todos', error: error, stackTrace: st);
-      return "Algo deu errado. Por favor, tente novamente mais tarde";
+      return defaultErrorMessage;
     }
   }
 
@@ -76,7 +77,7 @@ class TodosLocalStorageService {
       return (error.message, null);
     } catch (error, st) {
       log('Error loading done todos', error: error, stackTrace: st);
-      return ("Algo deu errado. Por favor, tente novamente mais tarde", null);
+      return (defaultErrorMessage, null);
     }
   }
 }

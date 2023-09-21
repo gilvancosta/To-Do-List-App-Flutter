@@ -1,11 +1,11 @@
 import 'dart:developer';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart' as mylocadata;
+
 import 'package:app_todo_list/src/core/exception/local_storage_exception.dart';
 
 class LocalStorageService {
-  
   Future<void> set(String key, String? data) async {
-    const storage = FlutterSecureStorage();
+    const storage = mylocadata.FlutterSecureStorage();
 
     try {
       storage.write(key: key, value: data);
@@ -17,7 +17,7 @@ class LocalStorageService {
   }
 
   Future<String?> get(String key) async {
-    const storage = FlutterSecureStorage();
+    const storage = mylocadata.FlutterSecureStorage();
     try {
       return await storage.read(key: key);
     } catch (error, st) {
@@ -28,7 +28,7 @@ class LocalStorageService {
   }
 
   Future<void> clearStorage() async {
-    const storage = FlutterSecureStorage();
+    const storage = mylocadata.FlutterSecureStorage();
     try {
       await storage.deleteAll();
     } catch (error, st) {
