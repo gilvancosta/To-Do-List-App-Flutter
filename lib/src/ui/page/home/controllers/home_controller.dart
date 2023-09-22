@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import '../../../../domain/models/todo_model.dart';
 import '../../../../domain/services/local_storage/todos_local_storage_service.dart';
 
-
-
 class HomeController extends ChangeNotifier {
   final TodosLocalStorageService _todosLocalStorageService;
 
@@ -33,8 +31,7 @@ class HomeController extends ChangeNotifier {
   }
 
   Future<String?> loadDoneTodos() async {
-    final (String? error, List<String>? loadedDoneTodos) = 
-       await _todosLocalStorageService.getDoneTodos();
+    final (String? error, List<String>? loadedDoneTodos) = await _todosLocalStorageService.getDoneTodos();
 
     if (error == null) {
       doneTodos
@@ -54,6 +51,7 @@ class HomeController extends ChangeNotifier {
     }
 
     return error;
+    // return 'ocorreu um erro';
   }
 
   Future<String?> saveTodos() async {
