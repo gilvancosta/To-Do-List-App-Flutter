@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
+import '../../../../domain/models/todo_model.dart';
+import '../../../../domain/services/local_storage/todos_local_storage_service.dart';
 
-import '../../../models/todo_model.dart';
-import '../../../services/local_storage/todos_local_storage_service.dart';
+
 
 class HomeController extends ChangeNotifier {
-  final TodosLocalStorageService _todosLocalStorage;
+  final TodosLocalStorageService _todosLocalStorageService;
 
-  HomeController(this._todosLocalStorage);
+  HomeController(this._todosLocalStorageService);
 
   final List<TodoModel> todos = [];
 
   final List<String> doneTodos = [];
 
   Future<String?> loadTodos() async {
-    final (String? error, List<TodoModel>? loadedTodos) = await _todosLocalStorage.getTodos();
+    final (String? error, List<TodoModel>? loadedTodos) = await _todosLocalStorageService.getTodos();
 
     if (error == null) {
       todos
@@ -32,7 +33,8 @@ class HomeController extends ChangeNotifier {
   }
 
   Future<String?> loadDoneTodos() async {
-    final (String? error, List<String>? loadedDoneTodos) = await _todosLocalStorage.getDoneTodos();
+    final (String? error, List<String>? loadedDoneTodos) = 
+       await _todosLocalStorageService.getDoneTodos();
 
     if (error == null) {
       doneTodos
@@ -55,7 +57,7 @@ class HomeController extends ChangeNotifier {
   }
 
   Future<String?> saveTodos() async {
-    return _todosLocalStorage.setTodos(todos);
+    return _todosLocalStorageService.setTodos(todos);
   }
 
   bool isTodoChecked(String id) {
@@ -69,7 +71,7 @@ class HomeController extends ChangeNotifier {
       doneTodos.removeWhere((checkedTodoId) => checkedTodoId == id);
     }
 
-    final String? error = await _todosLocalStorage.setDoneTodos(doneTodos);
+    final String? error = await _todosLocalStorageService.setDoneTodos(doneTodos);
 
     if (error == null) {
       if (isTodoChecked(id)) {

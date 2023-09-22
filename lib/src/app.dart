@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'features/home/controllers/home_controller.dart';
-import 'features/home/home_page.dart';
-import 'services/local_storage/local_storage_service.dart';
-import 'services/local_storage/todos_local_storage_service.dart';
+import 'domain/services/local_storage/local_storage_service.dart';
+import 'domain/services/local_storage/todos_local_storage_service.dart';
+
+import 'ui/page/home/controllers/home_controller.dart';
+import 'ui/page/home/home_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
